@@ -4,6 +4,14 @@ A case study of a sales CRM's WhatsApp number over 48 days (2026-08-11 to 2026-0
 quality rating fell, what was changed, what can and cannot be claimed about why it recovered,
 and a monitor designed from what happened.
 
+## My role
+
+I did this work with Claude Code as my coding agent. My part: I analysed the daily rating
+series, decided what can and cannot be attributed to each change, and designed the monitor and
+its 42 evaluation scenarios, with the expected results fixed before the code ran. Claude Code
+wrote code to those specifications, and I reviewed every result. This case study does not
+claim any of the system changes it describes as my work.
+
 > **Scope.** The only real data here is the provider's daily quality rating
 > (`data/quality_series.csv`: date and rating, nothing else). No message text, no phone numbers,
 > no customer data. Every other series in this repo is synthetic and marked as such.
@@ -32,8 +40,8 @@ flowchart LR
 ## The arc
 
 **1. A retry loop (Aug 12–17).** A change to the anti-saturation logic on Aug 12 left the
-system attempting the same automated messages over and over. The CRM's own throttle stopped
-almost all of those attempts, so they never reached the provider.
+system attempting the same automated messages over and over. The loop showed up as attempts
+blocked by the CRM's own throttle, and a blocked attempt never reaches the provider.
 
 **Open question:** the rating was already **red on Aug 11**, the day before that change. The
 loop cannot explain the first red day, and nothing in the available data does.
@@ -46,10 +54,12 @@ not lower the rating by themselves. If loop and rating are related, it is throug
 cause, not directly.
 
 **4. Relapse (Aug 27 – Sep 3).** The rating went yellow the day after a deploy on Aug 26, and
-red on Sep 3. **The strongest candidate is the retry queue that deploy released:** it began
-storing provider-refused messages and scheduling them again, and throttle blocks jumped that
-night across many more phones than usual. It is a candidate, not a proof: the evidence is
-timing and shape, not code.
+red on Sep 3. **The strongest candidate is the queue that deploy released.** It widened the
+retry for messages the provider had refused (error 131049) from one flow to every flow, with no
+age limit, so a backlog of messages that were weeks old went out at once. The next day the
+throttle blocked messages to far more distinct phones than on the days before. It is a
+candidate, not a proof: what the deploy changed is documented, but its link to the rating is
+only timing and shape.
 
 **5. Green again (Sep 4 onwards)**, with no change of this project on that day.
 

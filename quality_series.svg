@@ -73,7 +73,7 @@
 <line x1="360.6" y1="60" x2="360.6" y2="206" stroke="#222" stroke-dasharray="3,3"/>
 <circle cx="360.6" cy="52" r="8" fill="#222"/>
 <text x="360.6" y="56" text-anchor="middle" fill="#fff" font-size="11">4</text>
-<text x="70" y="322" fill="#222"><tspan font-weight="bold">4</tspan>  Aug 26: deploy: retries for provider-refused messages</text>
+<text x="70" y="322" fill="#222"><tspan font-weight="bold">4</tspan>  Aug 26: deploy: refused-message retry widened, no age limit</text>
 <line x1="510.6" y1="60" x2="510.6" y2="206" stroke="#222" stroke-dasharray="3,3"/>
 <circle cx="510.6" cy="52" r="8" fill="#222"/>
 <text x="510.6" y="56" text-anchor="middle" fill="#fff" font-size="11">5</text>

@@ -14,7 +14,7 @@ EVENTS = [
     ("2026-08-12", "anti-saturation change; retry loop starts"),
     ("2026-08-17", "retry loop cut"),
     ("2026-08-19", "first green"),
-    ("2026-08-26", "deploy: retries for provider-refused messages"),
+    ("2026-08-26", "deploy: refused-message retry widened, no age limit"),
     ("2026-09-03", "red again"),
     ("2026-09-04", "green again"),
     ("2026-09-07", "cadence cap (PR #100)"),
